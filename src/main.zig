@@ -30,7 +30,7 @@ pub fn main() !void {
             }
         }
         //_ = try std.io.getStdIn().reader().read(buff[0..]);
-        std.time.sleep(100000000);
+        std.time.sleep(100000000); //sleep for a second
         runGeneration();
     }
 }
