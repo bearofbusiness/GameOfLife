@@ -21,7 +21,7 @@ pub fn main() !void {
     board[1][2] = true;
 
     while (true) {
-        try printboard();
+        try printBoard();
 
         //copy from board to buffer
         for (board, 0..) |row, i| {
@@ -47,13 +47,13 @@ fn createboards() !void {
     }
 }
 
-fn printboard() !void {
+fn printBoard() !void {
     for (board) |row| {
         for (row) |space| {
             if (space) {
-                try stdout.print("▓ ", .{}); // █
+                try stdout.print("▓▓", .{}); // █
             } else {
-                try stdout.print("░ ", .{});
+                try stdout.print("░░", .{});
             }
         }
         try stdout.print("\n", .{});
