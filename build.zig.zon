@@ -1,0 +1,23 @@
+.{
+    // the name of your project
+    .name = "Game-Of-Life",
+    // the version of your project
+    .version = "0.0.1",
+
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+    .dependencies = .{
+        .string = .{
+            .url = "https://github.com/xyaman/mibu/archive/refs/heads/main.zip",
+            //the correct hash will be suggested by the zig compiler, you can copy it from there
+            .hash = "12202556266b6db35cff093d9e0a6c012810758a282b285068309dd9662c67fce84e",
+        },
+        .mibu = .{
+            .url = "git+https://github.com/xyaman/mibu/?ref=HEAD#1e4fe5a61c362002f11b3eaa7618d0fc93e653d7",
+            .hash = "12202556266b6db35cff093d9e0a6c012810758a282b285068309dd9662c67fce84e",
+        },
+    },
+}
