@@ -58,22 +58,17 @@ pub fn main() !void {
 
     const inputThread = try std.Thread.spawn(.{}, getInputs, .{ stdin, stdout });
     _ = inputThread;
+
     while (true) {
-        if (term.getSize(0)) |_| {
-            while ((try term.getSize(0)).width * 2 < boardSize or (try term.getSize(0)).height < boardSize + 2) {
-                try mibu.cursor.goTo(stdout.writer(), 1, 2);
-                try stdout.writer().print("Error: The Terminal Must be atleast {d} by {d}.", .{ boardSize, boardSize + 2 });
-                if (exit) break;
-            } else {
-                try mibu.clear.all(stdout);
-                try mibu.cursor.goTo(stdout.writer(), 1, 1);
-                try stdout.writer().print("Press space to pause and click to edit while paused. Press q or Ctrl-C to exit...\n\r", .{});
-                try printBoard(stdout);
-            }
-        } else |_| {
+        while ((try term.getSize(0)).width * 2 < boardSize or (try term.getSize(0)).height < boardSize + 2) {
             try mibu.cursor.goTo(stdout.writer(), 1, 2);
-            try mibu.clear.entire_line(stdout);
-            try stdout.writer().print("Error: Posfix Not Suported on your platform this may cause errors.", .{});
+            try stdout.writer().print("Error: The Terminal Must be atleast {d} by {d}.", .{ boardSize, boardSize + 2 });
+            if (exit) break;
+        } else {
+            try mibu.clear.all(stdout);
+            try mibu.cursor.goTo(stdout.writer(), 1, 1);
+            try stdout.writer().print("Press space to pause and click to edit while paused. Press q or Ctrl-C to exit...\n\r", .{});
+            try printBoard(stdout);
         }
 
         //check for pause and exits
