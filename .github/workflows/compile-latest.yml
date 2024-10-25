@@ -1,0 +1,39 @@
+name: Compile Latest
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: read
+      statuses: read
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: get-zig
+        uses: mlugg/setup-zig@v1.2.1
+        with:
+          version: 0.13.0
+        
+      - name: compile
+        run: zig build -Doptimize=ReleaseSmall
+      - name: rename
+        run: mv ./zig-out/GameOfLife ./zig-out/GameOfLife-small
+      - name: compile
+        run: zig build -Doptimize=ReleaseFast
+      - name: Automatic Release generation
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: "Automatic Latest Build"
+          files: |
+            zig-out/*
