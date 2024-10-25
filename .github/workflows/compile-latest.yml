@@ -32,13 +32,13 @@ jobs:
       - name: compile
         run: zig build -Doptimize=ReleaseFast
         
-      - name: "Release"
-        uses: "laminas/automatic-releases@v1"
+      - name: Automatic Release generation
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
-          command-name: "laminas:automatic-releases:release"
-        env:
-          "GITHUB_TOKEN": ${{ secrets.ORGANIZATION_ADMIN_TOKEN }}
-          "SIGNING_SECRET_KEY": ${{ secrets.SIGNING_SECRET_KEY }}
-          "GIT_AUTHOR_NAME": ${{ secrets.GIT_AUTHOR_NAME }}
-          "GIT_AUTHOR_EMAIL": ${{ secrets.GIT_AUTHOR_EMAIL }}
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: true
+          title: "Automatic Latest Build"
+          files: |
+            zig-out/bin/*
           
