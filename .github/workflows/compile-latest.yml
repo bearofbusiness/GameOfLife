@@ -25,7 +25,7 @@ jobs:
       - name: compile
         run: zig build -Doptimize=ReleaseSmall
       - name: rename
-        run: mv ./zig-out/GameOfLife ./zig-out/GameOfLife-small
+        run: mv ./zig-out/bin/GameOfLife ./zig-out/bin/GameOfLife-small
       - name: compile
         run: zig build -Doptimize=ReleaseFast
       - name: Automatic Release generation
@@ -36,4 +36,4 @@ jobs:
           prerelease: false
           title: "Automatic Latest Build"
           files: |
-            zig-out/*
+            zig-out/bin/*
