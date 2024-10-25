@@ -6,5 +6,6 @@ made useing [mibu](https://github.com/xyaman/mibu)
 ---
 ## Usage
 ```bash
-./GameOfLife <size of board>```
-the default is 16
+./GameOfLife <size of board>
+#the default is 16
+```
