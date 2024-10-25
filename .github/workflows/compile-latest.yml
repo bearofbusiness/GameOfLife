@@ -30,7 +30,7 @@ jobs:
         run: mv ./zig-out/bin/GameOfLife ./zig-out/bin/GameOfLife-small
         
       - name: compile
-        run: zig build -Doptimize=ReleaseFast
+        run: zig build
         
       - name: Automatic Release generation
         uses: "marvinpinto/action-automatic-releases@latest"
